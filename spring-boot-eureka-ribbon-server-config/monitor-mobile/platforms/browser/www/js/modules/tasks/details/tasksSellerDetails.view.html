@@ -1,0 +1,73 @@
+<ion-nav-bar class="header" align-title="center">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-chevron-left white-color" ng-click="tarefasVendedor()"></button>
+    </ion-nav-buttons>
+    <ion-nav-title class="text-center">
+        Detalhe da Tarefa
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button menu-toggle="right" class="button button-icon icon ion-android-more-vertical white-color"></button>
+    </ion-nav-buttons>
+</ion-nav-bar>
+<ion-nav-view>
+    <ion-floating-button click="showPopuptoStart()"  has-footer="false" is-disabled="{{item.status}}" is-active="{{item.time_status}}" button-color="#9DA951" icon="ion-play" icon-open="ion-pause" iconColor="#fff"  ></ion-floating-button>
+    <div class="timer-show-location" ng-show="showTimer">
+        <timer start-time="startTimeTask" interval="1000" autostart="false" >{{hours == 0 ? '': (hours+':')}}{{minutes == 0 ? '' : (minutes+':')}}{{seconds}} {{hours > 0 ? 'h' : (minutes > 0 ? 'm' : 's') }}</timer>
+    </div>
+    <ion-view>
+        <ion-content overflow-scroll="true" >
+            <ul class="list">
+                <li>
+                <ion-checkbox ng-class="item.status ? 'checked_info' : ''"
+                              ng-disabled="true"
+                              ng-model="item.status" class="text-center position-menu-details" ng-click="closeTaskPrincipal(item)"  >
+                    <b>{{item.description}} </b>
+                </ion-checkbox>
+                </li>
+                <li class="item" ng-show="today()" style="padding: 12px;">
+                    <i class="icon icon ion-android-stopwatch icon-clock" style="font-size: 25px;padding-right: 5px;vertical-align: sub;"></i>
+                    Para Hoje, {{item.start| date: 'HH:mm'}} - {{item.stop| date: 'HH:mm'}}
+                </li>
+                <li class="item" ng-show="!today()" style="padding: 12px;">
+                    <i class="icon icon ion-alert-circled icon-alert" style="font-size: 25px;padding-right: 5px;vertical-align: sub;"></i>
+                    Atrasada, {{item.expires| date: 'dd/MM'}} - {{item.start| date: 'HH:mm'}} às {{item.stop| date: 'HH:mm'}}
+                </li>
+                <li class="item" style="padding: 12px;">
+                    <div>
+                        Responsável: {{user.name}}
+                    </div>
+                </li>
+                <div ng-show="sub_tasks.length > 0" style="margin-left: 10px;">
+                    <li class="item remove-border-left" style="padding-top: 15px;">
+                        <span>Subtarefas: </span>
+                    </li>
+
+                    <li ng-repeat="item in sub_tasks" class="item remove-border-left" ng-hide="taskStarted" style="padding-top: 10px; padding-bottom: 10px;" >
+                        <div ng-class="item.status == true ? 'checked' : ''"  class=" remove-border-left">
+                            <span>{{item.description}}</span>
+                        </div>
+                    </li>
+
+                    <li ng-repeat="item in sub_tasks" class="remove-border-left" >
+                    <ion-checkbox ng-show="taskStarted" ng-class="item.status == true ? 'checked' : ''"
+                                  ng-model="item.status"
+                                  class=" remove-border-left"
+                                  style="padding-top: 10px; padding-bottom: 11px;"
+                                  ng-click="changeStatusSubTask(item)">
+                        {{item.description}}
+                    </ion-checkbox>
+                    </li>
+                </div>
+                <li class="item"  style="padding: 12px;border-bottom-color: white;" ng-hide="tags.length === 0">
+                    <div>
+                        Etiquetas:
+                        <tags-input ng-model="tags" display-property="description" key-property="id" class="custom-tags-input"  disabled="true" >
+                            <auto-complete source="loadTags($query)"></auto-complete>
+                        </tags-input>
+                    </div>
+                </li>
+            </ul>
+            <div ng-init="initTime()"></div>
+        </ion-content>
+    </ion-view>
+</ion-nav-view>

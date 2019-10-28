@@ -1,0 +1,93 @@
+<ion-nav-bar class="header" align-title="center">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-chevron-left" style="color: white;"
+                ng-click="descartar()"></button>
+    </ion-nav-buttons>
+    <ion-nav-title class="text-center">
+        <div ng-if="action === 'create'">Criar equipe</div>
+        <div ng-if="action === 'edit'">Editar equipe</div>
+        <div ng-if="action === 'show'">Ver equipe</div>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button menu-toggle="right" ng-show="user.profile === 3"
+                class="button button-icon icon ion-android-more-vertical" style="color: white;"
+                ng-click="openPopover($event, item)"></button>
+    </ion-nav-buttons>
+</ion-nav-bar>
+<ion-nav-view>
+    <ion-view>
+        <ion-content overflow-scroll="true" ng-class="action !== 'show' ? 'create' : 'show'">
+
+            <div style="float: left; width: 100%; padding-top: 20px;" ng-if="action !== 'show'">
+                <p>Nome da equipe:</p>
+            </div>
+
+            <label class="item item-input" style="padding-top: 3%;padding-bottom: 3%; ">
+                <input type="text" ng-model="team.name"  placeholder="Equipe" style="text-align: center; font-weight: bold;color: #494C6B !important;">
+            </label>
+
+            <div style="float: left; width: 100%;" ng-class="action !== 'show' ? 'create-title-gerente' : 'show-title-gerente'">
+                <p ng-if="action !== 'show'">Gerente:</p>
+                <b ng-if="action === 'show'">Gerentes</b>
+            </div>
+
+            <div class="list">
+                <div class="item item-input-inset" style="margin-bottom: 0px !important;" ng-repeat="item in tagGerentes" ng-if="action === 'show'">
+                    <label class="item-input-wrapper" style="padding: 20px;">
+                        {{item.name}} {{item.lastname}}
+                    </label>
+                    <button class="btn-circle" ng-click="openPopover_remover($event, item)" ng-if="user.profile === 3">
+                        <i class="icon ion-more"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div ng-if="action !== 'show'">
+                <tags-input ng-model="tagGerentes" add-from-autocomplete-only="true" replace-spaces-with-dashes="false" display-property="name" key-property="id" class="tags-custom custom-tags-input"  style="height: 85px;margin-top: 10px;" placeholder="Digite os nomes dos gerentes" >
+                    <auto-complete readonly="readonly" class="gerentes" style="width: 100%;z-index: 9999 " source="loadGerentes($query)" ></auto-complete>
+                </tags-input>
+            </div>
+
+            <div style="float: left; width: 100%;" ng-class="action !== 'show' ? 'create-title-vendedor' : 'show-title-vendedor'">
+                <p ng-if="action !== 'show'">Vendedores:</p>
+                <b ng-if="action === 'show'">Vendedores</b>
+            </div>
+
+            <div class="list">
+                <div class="item item-input-inset" ng-repeat="item in tagVendedores" ng-if="action === 'show'">
+                    <label class="item-input-wrapper" style="padding: 20px;">
+                        {{item.name}} {{item.lastname}}
+                    </label>
+                    <button class="btn-circle" ng-click="openPopover_remover($event, item)" ng-if="user.profile === 3">
+                        <i class="icon ion-more"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div ng-if="action !== 'show'">
+                <tags-input ng-model="tagVendedores" add-from-autocomplete-only="true" replace-spaces-with-dashes="false" display-property="name" key-property="id" class="tags-custom custom-tags-input"  style="height: 85px;margin-top: 10px;" placeholder="Digite os nomes dos vendedores" >
+                    <auto-complete readonly="readonly" class="vendedores" style="width: 100%;" source="loadVendedores($query)" style="z-index: 9999" ></auto-complete>
+                </tags-input>
+            </div>
+
+            <div class="row" style="margin-top: 100px;" ng-if="action !== 'show'">
+                <div class="col">
+                    <button class="button button-calm" ng-click="descartar()"  style="width: 100%;background-color: #989ab2">
+                        Descartar
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="button button-balanced" ng-click="create()" ng-if="action === 'create'"
+                            ng-disabled="!team.name" style="width: 100%; background-color: #59ba52">
+                        Criar
+                    </button>
+
+                    <button class="button button-balanced" ng-click="edit()" ng-if="action === 'edit'"
+                            style="width: 100%; background-color: #59ba52 ">
+                        Editar
+                    </button>
+                </div>
+            </div>
+        </ion-content>
+    </ion-view>
+</ion-nav-view>

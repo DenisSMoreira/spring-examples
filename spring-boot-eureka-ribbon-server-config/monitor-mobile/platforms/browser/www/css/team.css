@@ -1,0 +1,98 @@
+.font-color{
+    color: lightgrey;
+}
+
+.menu_team {
+    border-color: #B1BC39 !important;
+    background-color: #B1BC39 !important;
+}
+
+.popup_team{
+    height: 110px !important;
+}
+
+.popup_team_remover{
+    height: 60px !important;
+}
+
+.mb-15{
+    margin-bottom: 15px;
+}
+
+.autocomplete {
+    width: 200px !important;
+    position: absolute;
+    top: 100% !important;
+    left: 0 !important;
+}
+
+.background-label-team{
+    color: #fff !important;
+}
+
+.item-team {
+    color: #fff !important;
+}
+
+.label-team h1, .label-team h4{
+    color: #fff !important;
+}
+
+.background-label-team-edit, .background-label-team-edit input {
+    color: #000 !important;
+}
+
+.btn-circle {
+    height: 35px;
+    width: 35px;
+    border-radius: 20px;
+    color: #ccc;
+    background-color: #fff;
+    border: 0.1px solid;
+    border-color: #ccc;
+}
+
+.create{
+    margin-top: 30px;
+    padding: 15px;
+    margin-bottom: 50px;
+}
+
+.show{
+    margin-top: 30px;
+}
+
+.create-title-gerente{
+    padding-top: 20px;
+}
+
+.create-title-vendedor{
+    padding-top: 55px;
+}
+
+.show-title-gerente{
+    padding: 20px;
+}
+
+.show-title-vendedor{
+    padding: 20px;
+}
+
+.tags-custom .host .tags span {
+    display: block !important;
+    width: 100% !important;
+    visibility: inherit !important;
+    text-align: center !important;
+}
+
+.tags-custom .host .tags input::-webkit-input-placeholder{
+    color: #fff !important;
+}
+
+.list .item .item-input-wrapper{
+    background: #fff !important;
+}
+
+.list .item .item-icon-right {
+    color : #999999 !important;
+}

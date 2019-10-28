@@ -1,0 +1,447 @@
+/* Empty. Add your own CSS if you like */
+.header{
+    background-color: #B1BC39;
+    color: #fff;
+}
+.header.bar-header {
+    border-bottom: 1px solid #B64656;
+    /*height: 76px;*/
+}
+
+.larger {
+    color: #A8ADCE !important;
+    font-size: 40px;
+}
+
+.mb-30{
+    margin-bottom: 35px;
+}
+
+.mt-95{
+    margin-top: 95px;
+}
+/*
+.disabled{
+  pointer-events: none;
+  background: #ccc;
+  cursor: not-allowed;
+  background-color: #DFDFDF !important;
+}
+*/
+.disabled{
+    background: #ccc;
+    background-color: #B5B3B3 !important;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/*.bar {
+    height: 74px;
+}*/
+.scroll{
+    height: 100%;
+}
+/*.bar .title {
+    margin-top: 20px;
+}*/
+.overflow-scroll {
+
+}
+.sample-show-hide {
+    transition: all linear 0.3s;
+}
+
+.sample-show-hide.ng-hide {
+    opacity: 0;
+}
+
+.item {
+    font-size: 14px;
+    padding: 5px
+}
+.icon-clock {
+    color: #9DA951 !important;
+    font-size: 30px;
+    padding-right: 10px;
+}
+
+.icon-alert {
+    color: #f48342 !important;
+    font-size: 30px;
+    padding-right: 10px;
+}
+
+.datapiker{
+    color: black;
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.tabs .tab-item .badge.badge-salemonitor, .badge.badge-salemonitor {
+    background-color: #9DA951;
+    color: #fff;
+}
+
+.badge {
+    padding: 8px 8px !important;
+    border-radius: 2px !important;
+    font-size: 15px !important;
+}
+
+.item .badge{
+    top: 10px !important;
+}
+
+.background-salemonitor{
+    background-color: #383850;
+}
+
+.background-salemonitor div ion-tem{
+    background-color: #383850 !important;
+}
+.item-complex{
+    padding: 0px !important;
+}
+.badge:empty {
+    display: none !important;
+}
+.item .badge {
+    right: 20px;
+}
+
+.badge{
+    min-height: 28px;
+    min-width: 33px;
+    display: inline-block !important;
+}
+
+.item-complex .item-content, .item-radio .item-content{
+    background-color: #383850 !important;
+    color: lightgrey !important;
+    padding-left: 25px;
+}
+
+.background-salemonitor .list .item {
+    border-color: #424452 !important;
+    background-color: #68687F !important;
+}
+
+.menu{
+    background-color: #383850 !important;
+}
+
+.background-salemonitor .list a.item{
+    color: #A8ADCE !important;
+    border-width: 0px !important;
+}
+
+.background-salemonitor .list .item h2{
+    color: #A8ADCE !important;
+}
+
+.background-salemonitor .list .item p{
+    color: #A8ADCE !important;
+}
+
+.header-menu-bar{
+    height: 100px; margin-top: 35px;background-image: none !important;
+}
+
+.bar{
+    border-bottom: 0px !important;;
+}
+
+.icon-menu {
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+.w20{
+    width: 20px;
+}
+
+ion-view {
+    margin-top: 43px !important;
+}
+
+.color-salemonitor {
+    color: #A8ADCE !important;
+}
+
+.start {
+    width: 35px;
+    float: right;
+    margin-right: 15px;
+    padding-top: 3px;
+}
+
+.popup-confirmation {
+    width: 35%;
+    float: none;
+    margin-top: -55px;
+}
+.popup-title {
+    font-weight: 800;
+    font-size: 20px;
+    color: #545471;
+}
+.popup-button-cancel {
+    border-color: #9DA951;
+    color: #9DA951;
+}
+.popup-sub-title {
+    color: #545471;
+    font-size: 15px;
+}
+
+.timer-show-location{
+    bottom: 10px;
+    position: fixed;
+    right: 90px;
+    z-index: 9998;
+    width: 105px;
+    height: 50px;
+    color: #545471;
+    text-align: right;
+    font-weight: bold;
+}
+.remove-border-left{
+    border-left: none !important;
+}
+
+.sub_tasks {
+    padding-left: 15px !important;
+}
+
+.task span {
+    padding: 10px;
+    float: left;
+}
+
+.checkbox input, .checkbox-icon {
+    float: right;
+}
+
+.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+    background: #B1BC39 !important;
+    border-color: #B1BC39 !important;
+}
+
+.checked:before{
+    position: absolute;
+    content: "";
+    left: 10;
+    top: 50%;
+    border-top: 1px solid;
+    width: 82%;
+}
+
+.checked_info:before{
+    position: absolute;
+    content: "";
+    left: 40px;
+    top: 50%;
+    border-top: 1px solid;
+    width: 74%;
+}
+
+.padding-0{
+    padding: 0px !important;
+}
+
+.pd-top5{
+    padding-top: 5px;
+}
+
+.pd-top10{
+    padding-top: 10px;
+}
+
+.pd-top15{
+    padding-top: 15px;
+}
+.pd-top30{
+    padding-top: 30px;
+}
+
+.pd-bottom10{
+    padding-bottom: 10px;
+}
+
+.pd-bottom15{
+    padding-bottom: 15px;
+}
+
+
+
+.number{
+    font-size: 50px;
+    margin-top: 20px !important;
+}
+
+.font_label{
+    padding-top: 5px;
+    margin-top: 20px !important;
+    font-size: 10px;
+    font-weight: bold;
+    font-family: Arial;
+}
+
+.filter{
+    background-color: #30313F;
+    color: #545471 !important;
+    font-size: 18px;
+}
+
+.text-welcome{
+    padding-top: 12px;
+    color: #A8ADCE;
+    font-size: 16px;
+}
+
+
+select{
+    padding: 8px;
+    width: 100% !important;
+    height: 38px !important;
+    background-color: #494C6B !important;
+    border-color: #494C6B !important;
+    color: #fff;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent url("../img/icone-down.png") no-repeat right center;
+    border-right-width: 10px;
+}
+
+select > option {
+    border-color: #494C6B !important;
+    width: 80% !important;
+}
+
+.background-label{
+    background: #494C6B;
+    color: #A8ADCE !important;
+}
+
+.font-color-salemonitor{
+    color: #A8ADCE !important;
+}
+
+.font-color-salemonitor a {
+    color: #B1BC39 !important;
+    text-decoration: none;
+}
+
+.button-entrar-salemonitor{
+    background-color: #B1BC39;
+    color: #fff !important;
+}
+
+.button-foto-salemonitor{
+    background-color: #B1BC39;
+    color: #fff !important;
+    border: 2px solid;
+    border-radius: 25px;
+    border-color:  #B1BC39;
+}
+
+.h-55{
+    height: 55px !important;
+}
+
+.h-60{
+    height: 60px;
+}
+
+.vertical-align {
+    line-height: 75px;
+    white-space: nowrap;
+}
+
+/* sobrescreve botao popup */
+.button.button-positive {
+    background-color: #B1BC39 !important;
+}
+
+.popup{
+    text-align: center;
+}
+
+.item{
+    color: #545471;
+
+}
+.show-onezone-datepicker{
+    font-weight: bold;
+    color: #545471;
+}
+
+@media only screen
+and (min-width : 560px) {
+    .button-logout-position{
+        position: relative !important;
+        bottom: 0px !important;
+        left: 0px !important;
+        width: 100% !important;
+    }
+}
+
+.button-logout-position{
+    position: fixed;
+    bottom: 30px;
+    left: 10px;
+    width: 95%;
+    border: none;
+    z-index: 20;
+}
+
+.rm-border-button-logout{
+    border: none; background-color: #383850;
+}
+
+.white-color{
+    color: white;
+}
+.white-color:before{
+    color: white;
+}
+
+.arrow-position-left{
+    width: 20%;float: left;
+}
+
+.arrow-position-right{
+    width: 20%;float: right;
+}
+
+.fl-right{
+    float: right;
+}
+
+.fl-left{
+    float: left;
+}
+
+.backgd-color-lightgray{
+    background-color: #F1F1F1;
+}
+.icon-filter-position{
+    right: 10px; position: absolute;
+}
+.ft-size-25{
+    font-size: 25px;
+}
+.ft-size-20{
+    font-size: 20px;
+}
+.position-menu-details{
+    padding-left: 0px !important;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-top: -2px;
+}
+
+.button.button-balanced {
+    background-color: #59BA52 !important;
+}

@@ -1,0 +1,119 @@
+.custom-tags-input .tags {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+tags-input[disabled] .tags {
+    background-color: #fff;
+    border: 0px;
+    border-radius: 0px;
+    box-shadow: none;
+    transition: none;
+}
+tags-input[disabled] .tags {
+    background-color: #fff !important;
+}
+
+tags-input .tags .tag-item {
+    margin: 3px !important;
+    height: 35px !important;
+    line-height: 35px !important;
+}
+.custom-tags-input .tags.focused {
+    border-color: #545471;
+    z-index: 100;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
+}
+tags-input .tags .tag-item .remove-button {
+    color: #fff !important;
+}
+.custom-tags-input .tags .tag-item {
+    background: #545471;
+    border: 1px solid #545471;
+    border-radius: 4px;
+}
+tags-input .tags .input {
+    color: #545471 !important;
+    margin: 8px !important;
+}
+.custom-tags-input .tags .tag-item.selected {
+    background: #545471;
+    border: 1px solid #545471;
+    border-radius: 4px;
+    color: #545471;
+}
+
+.custom-tags-input .tags .tag-item button {
+    background: transparent;
+    color: #000;
+    opacity: .4;
+}
+
+.custom-tags-input .autocomplete {
+    border-radius: 4px;
+}
+
+.custom-tags-input .autocomplete .suggestion-item.selected {
+    color: #262626;
+    background-color: #e9e9e9;
+}
+
+.custom-tags-input .autocomplete .suggestion-item em {
+    font-weight: normal;
+    background-color: #545471;
+}
+
+.custom-tags-input .autocomplete .suggestion-item.selected em {
+    color: #262626;
+    background-color: #545471;
+}
+
+tags-input[disabled] .remove-button {
+    display: none !important;
+}
+tags-input[disabled] input.input {
+    display: none !important;
+}
+
+ion-popover-view{
+    color: #545471;
+}
+
+.popup-simple{
+    top: 110px !important;
+    height: auto !important;
+    position: relative !important;
+}
+
+.popover {
+    width: 230px;
+}
+
+a.item {
+    padding-bottom: 20px;
+}
+.popover .item {
+    /* text-align: right; */
+    padding-left: 80px;
+    padding-top: 15px;
+}
+.platform-ios .popover {
+    box-shadow: none;
+    border-radius: 0px
+}
+
+.platform-ios .popover-arrow {
+    display: none !important;
+}
+
+.ion-drag:before {
+    transform: scale(.5);
+    content: url('../img/icone-filtro-inicio.svg') !important;
+}
+
+/*.myClass{
+    opacity: 0.5 !important;
+}*/

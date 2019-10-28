@@ -1,0 +1,28 @@
+<ion-content ng-controller="PrincipalController" class="background-salemonitor" style="margin-top: 0px !important;">
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" style="height: 100%;">
+        <ion-slide >
+            <div class="imagem mb-30" >
+                <img src="img/bg-onboarding.png" style="width: 100%"/>
+                <div class="imagem-mascara" style="width: 90%">
+                    <div class="text-center" style="margin-top: 150px;">
+                        <div style="color: #fff; font-size: 20px;"><b>Bem-vindo</b></div>
+                        <div class="text-welcome">
+                            Seja bem-vindo ao Monitor, o seu gerenciador de tarefas.
+                            Com ele os seus dias serão muito mais produtivos e suas ações mais acertivas.
+                        </div>
+                        <div class="list list-inset background-salemonitor">
+                            <a class="button button-full button-entrar-salemonitor"
+                               ng-click="nextSlide()">PRÓXIMO</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div ng-include src="'js/modules/welcome/step1.view.html'"></div>
+        </ion-slide>
+        <ion-slide>
+            <div ng-include src="'js/modules/welcome/step2.view.html'"></div>
+        </ion-slide>
+    </ion-slide-box>
+</ion-content>

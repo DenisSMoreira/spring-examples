@@ -1,0 +1,75 @@
+.imagem-mascara {
+    width:80%; /* largura da imagem máscara */
+    height:30%; /* altura da imagem máscara */
+    position:absolute;
+    top: 10%;
+    background:url(../img/logo-monitor.png) no-repeat; /* imagem máscara */
+    background-size: 100%;
+    margin: 5%;
+    min-height: 180px;
+}
+
+.imagem-mascara-login {
+    width:80%; /* largura da imagem máscara */
+    height:30%; /* altura da imagem máscara */
+    position:absolute;
+    top: 10%;
+    background:url(../img/logo-monitor.png) no-repeat; /* imagem máscara */
+    background-size: 100%;
+    margin: 10%;
+    min-height: 180px;
+}
+
+.imagem-mascara-bg {
+    width:100%; /* largura da imagem máscara */
+    height:50%; /* altura da imagem máscara */
+    position:absolute;
+    background:url(../img/salemonitor-bg.png) no-repeat; /* imagem máscara */
+    background-size: 100%;
+}
+.imagem-menu-tarefa{
+    width: 25px;
+    height: 25px;
+    background-color: #B1BC39;
+    -webkit-mask-image: url(../img/icone-mini-ok-tarefa.svg);
+    float: right;
+    margin-right: 15px;
+    margin-top: 7px
+}
+
+.imagem-task-detail-ok{
+    width: 15px;
+    height: 15px;
+    background-color: #545471;
+    -webkit-mask-image: url(../img/icone-mini-ok-tarefa-detail.svg);
+    float: right;
+    margin-right: 15px;
+}
+
+
+.imagem-add-sub-tarefa{
+    width: 40px;
+    height: 40px;
+    background-color: #59ba52;
+    -webkit-mask-image: url(../img/icone-menu-tarefas.svg);
+    float: right;
+    margin-right: 15px;
+}
+
+.circular {
+    width: 70px;
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+    color: #9DA951;
+    border: 4px solid;
+}
+
+.slider-pager .slider-pager-page.active{
+    color: #B1BC39 !important;
+}
+
+.item-avatar > img:first-child, .item-avatar .item-image, .item-avatar .item-content > img:first-child, .item-avatar .item-content .item-image, .item-avatar-left > img:first-child, .item-avatar-left .item-image, .item-avatar-left .item-content > img:first-child, .item-avatar-left .item-content .item-image {
+    max-width: 70px !important;
+    max-height: 70px !important;
+}

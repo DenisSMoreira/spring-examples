@@ -1,0 +1,93 @@
+<ion-nav-bar class="header" align-title="center" >
+    <ion-nav-buttons side="left" style="margin-top: 20px;">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon white-color"></button>
+    </ion-nav-buttons>
+    <ion-nav-title class="text-center" >
+        Tarefas
+    </ion-nav-title>
+    <ion-nav-buttons side="right"  >
+        <button menu-toggle="right" class="button button-icon icon ion-gear-b white-color"></button>
+    </ion-nav-buttons>
+</ion-nav-bar>
+<ion-nav-view>
+    <div ng-show="user == 1">
+        <ion-floating-button click="myEvent()" has-footer="false" button-color="#9DA951" icon="ion-plus" iconColor="#fff"></ion-floating-button>
+    </div>
+
+    <ion-view style="margin-bottom: 50px;">
+        <ion-content overflow-scroll="true" style="margin-bottom: 50px;">
+            <ion-refresher
+                pulling-text="Atualizar ..."
+                on-refresh="findTasks()">
+            </ion-refresher>
+            <ul class="list">
+                <li class="item backgd-color-lightgray" style="padding: 9px;">
+                    <div class="arrow-position-left">
+                        <a class="icon icon larger icon-left ion-android-arrow-back" ng-click="backDate()"></a>
+                    </div>
+                    <div class="arrow-position-right">
+                        <a class="icon icon larger icon-right ion-android-arrow-forward fl-right" ng-click="forwardDate()"></a>
+                    </div>
+                <onezone-datepicker datepicker-object="onezoneDatepicker">
+                    <div class="show-onezone-datepicker text-center datapiker">
+                        {{todayLabel()}}
+                    </div>
+                </onezone-datepicker>
+                </li>
+                <div ng-show="(tasksFilter.length == 0 && today()) || today()" style="margin-bottom: 40px;">
+                    <li class="item" style="padding: 10px;">
+                        <i class="icon icon ion-android-stopwatch icon-clock"></i>
+                        <b style="padding-top: 7px; position: absolute;">Para Hoje</b>
+                        <span class="badge badge-salemonitor" >
+                            {{tasksTodayLenght}}
+                        </span>
+                    </li>
+                    <li class="item" ng-repeat="item in tasksToday| orderBy:'start'" >
+                        <div class="task" ng-class="item.status ? 'checked' : ''" >
+                            <span ng-click="goDetailTask(item)" >{{item.start| date: 'HH:mm'}} - {{item.stop| date: 'HH:mm'}} - {{item.description}}</span>
+                            <a ng-click="showPopuptoStart(item)" > <!-- href="#/tasksVendedorDetails/{{item}}" -->
+                                <img ng-show="{{item.time_status == 'FINISH'}}" class="start imagem-menu-tarefa" >
+                                <img src="img/icone-lista-play.svg"   ng-show="{{item.time_status == 'NEW'}}" class="start" >
+                                <img src="img/icone-lista-pause.svg"  ng-show="{{item.time_status == 'START'}}" class="start" >
+                                <img src="img/icone-lista-play-tarefa-pausada.svg"  ng-show="{{item.time_status == 'STOP'}}" class="start" >
+                            </a>
+                        </div>
+                    </li>
+                    <li class="item" style="padding: 10px;">
+                        <i class="icon icon ion-alert-circled icon-alert"></i>
+                        <b style="padding-top: 7px; position: absolute;">Atrasadas</b>
+                        <span class="badge badge-salemonitor">{{taskOldLenght}}</span>
+                    </li>
+                    <li class="item" ng-repeat="item in tasksOld| orderBy:'start'">
+                        <div class="task" ng-class="item.status ? 'checked' : ''" >
+                            <span ng-click="goDetailTask(item)" >{{item.start| date: 'HH:mm'}} - {{item.stop| date: 'HH:mm'}} - {{item.description}}</span>
+                            <a ng-click="showPopuptoStart(item)" > <!-- href="#/tasksVendedorDetails/{{item}}" -->
+                                <img ng-show="{{item.time_status == 'FINISH'}}" class="start imagem-menu-tarefa" >
+                                <img src="img/icone-lista-play.svg"   ng-show="{{item.time_status == 'NEW'}}" class="start" >
+                                <img src="img/icone-lista-pause.svg"  ng-show="{{item.time_status == 'START'}}" class="start" >
+                                <img src="img/icone-lista-play-tarefa-pausada.svg"  ng-show="{{item.time_status == 'STOP'}}" class="start" >
+                            </a>
+                        </div>
+                    </li>
+                </div>
+                <div ng-show="tasksFilter.length > 0 && !today()">
+                    <li class="item" style="padding: 10px;">
+                        <i class="icon icon ion-android-stopwatch icon-clock"></i>
+                        <b style="padding-top: 7px; position: absolute;">Para essa data</b>
+                        <span class="badge badge-salemonitor">{{tasksFilter.length}}</span>
+                    </li>
+                    <li class="item" ng-repeat="item in tasksFilter| orderBy:'start'">
+                        <div class="task" ng-class="item.status ? 'checked' : ''" ng-click="goDetailTask(item)">
+                            <span>{{item.start| date: 'HH:mm'}} - {{item.stop| date: 'HH:mm'}} - {{item.description}}</span>
+                            <a ng-click="showPopuptoStart(item)" > <!-- href="#/tasksVendedorDetails/{{item}}" -->
+                                <img ng-show="{{item.time_status == 'FINISH'}}" class="start imagem-menu-tarefa" >
+                                <img src="img/icone-lista-play.svg"   ng-show="{{item.time_status == 'NEW'}}" class="start" >
+                                <img src="img/icone-lista-pause.svg"  ng-show="{{item.time_status == 'START'}}" class="start" >
+                                <img src="img/icone-lista-play-tarefa-pausada.svg"  ng-show="{{item.time_status == 'STOP'}}" class="start" >
+                            </a>
+                        </div>
+                    </li>
+            </ul>
+        </ion-content>
+    </ion-view>
+</ion-nav-view>

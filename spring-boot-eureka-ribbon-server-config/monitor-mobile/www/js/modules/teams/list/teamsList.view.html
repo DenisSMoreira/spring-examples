@@ -1,0 +1,51 @@
+<ion-nav-bar class="header" align-title="center">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon" style="color: white;"></button>
+    </ion-nav-buttons>
+    <ion-nav-title class="text-center">
+        Equipes
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button menu-toggle="right" class="button button-icon icon ion-gear-b" style="color: white;"></button>
+    </ion-nav-buttons>
+</ion-nav-bar>
+<ion-nav-view>
+    <div ng-show="user.profile === 3">
+        <ion-floating-button click="create()" has-footer="false" button-color="#9DA951" icon="ion-plus" iconColor="#fff"></ion-floating-button>
+    </div>
+
+    <ion-view ng-init="listTeams()" ng-class="teamsList.length === 0 ? 'background-salemonitor' : ''">
+        <ion-content overflow-scroll="true" >
+            <ion-refresher pulling-text="Atualizar ..." on-refresh="listTeams()"></ion-refresher>
+            <div ng-if="teamsList.length === 0" class="text-center label-team font-color" style="padding: 20px;">
+                <img src="img/add-team.png" alt="" style="margin-top: 30%;" />
+                <h4>Sem equipes</h4>
+                Sua organização não tem equipes cadastradas. Clique no botão para cria-las.
+                Convide vendedores cadastrados no Monitor e monte os seus times.
+            </div>
+            <div ng-if="teamsList.length > 0">
+                <div class="text-center" style="padding: 15px;">
+                    <h4 ng-show="user.profile === 3">Equipes cadastradas</h4>
+                    <h4 ng-show="user.profile !== 3">Suas equipes</h4>
+                </div>
+                <div class="list" ng-if="user.profile === 3">
+                    <div class="item item-input-inset" style="padding: 10px;" ng-repeat="item in teamsList">
+                        <label class="item-input-wrapper">
+                            {{item.name}}
+                        </label>
+                        <button class="btn-circle" ng-click="openPopover($event, item)" ng-show="user.profile === 3">
+                            <i class="icon ion-more"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="list" ng-if="user.profile !== 3">
+                    <a class="item item-icon-right" ng-click="show_team(item)"
+                       ng-repeat="item in teamsList" style="padding: 25px;">
+                        {{item.name}}
+                        <i class="icon ion-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </ion-content>
+    </ion-view>
+</ion-nav-view>

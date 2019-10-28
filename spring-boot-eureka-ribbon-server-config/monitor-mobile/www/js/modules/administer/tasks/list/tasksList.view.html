@@ -1,0 +1,295 @@
+<html dir="ltr"><head></head><body contenteditable="true"><ion-nav-bar class="header" align-title="center">
+        <ion-nav-buttons side="left">
+            <button menu-toggle="left" class="button button-icon icon ion-navicon white-color"></button>
+        </ion-nav-buttons>
+        <ion-nav-title class="text-center">
+            Gerenciar Tarefas
+        </ion-nav-title>
+        <ion-nav-buttons side="right">
+            <button menu-toggle="right" class="button button-icon icon ion-gear-b white-color"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view>
+        <div>
+            <ion-floating-button click="forwardCreateTask()" has-footer="false" button-color="#9DA951" icon="ion-plus" iconcolor="#fff"></ion-floating-button>
+        </div>
+
+        <ion-view style="margin-bottom: 50px;">
+            <ion-content overflow-scroll="true" style="margin-bottom: 50px;">
+                <ion-refresher pulling-text="Atualizar ..." on-refresh="findTasks('all')">
+                </ion-refresher>
+                <ul class="list">
+                    <li class="item backgd-color-lightgray" style="padding: 9px;">
+                        <div class="arrow-position-left">
+                            <a class="icon icon larger icon-left ion-android-arrow-back" ng-click="backDate()"></a>
+                        </div>
+                        <div class="arrow-position-right">
+                            <a class="icon icon larger icon-right ion-android-arrow-forward fl-right" ng-click="forwardDate()"></a>
+                        </div>
+                    <onezone-datepicker datepicker-object="onezoneDatepicker">
+                        <div class="show-onezone-datepicker text-center datapiker">
+                            {{todayLabel()}}
+                        </div>
+                    </onezone-datepicker>
+                    </li>
+                    <!-- START -> filter task-->
+                    <div ng-init="open = false" class="item backgd-color-lightgray" style="padding: 10px;">
+                        <div ng-show="!open">
+                            <label style="font-size: 12px;" ng-show="usersList === ''">
+                                {{statusList === 'true' ? 'Executado por ' : 'Planejamento para '}}todos os vendedores
+                            </label>
+                            <label style="font-size: 12px;" ng-show="usersList !== ''">
+                                {{statusList === 'true' ? 'Executado por ' : 'Planejado para '}}{{getUserName(usersList)}}
+                            </label>
+                            <span class="ion-drag icon-filter-position ft-size-25" style="top: -5px;" ng-click="open = !open"></span>
+                        </div>
+                        <div class="check-element sample-show-hide" ng-show="open">
+                            <div class="pd-bottom10">
+                                Configurar Filtro:
+                                <span class="ion-close icon-filter-position ft-size-20" style="right: 20px;" ng-click="open = !open"></span>
+                            </div>
+                            <div class="pd-bottom10">
+                                <select class="select" ng-model="statusList">
+                                    <option value="false">Planejado</option>
+                                    <option value="true">Executado</option>
+                                </select>
+                            </div>
+                            <div>
+                                <select class="select" ng-model="usersList" ng-change="findTasks('all')">
+                                    <option value="">Todos os vendedores</option>
+                                    <option ng-repeat="option in allUsersOfTeams" value="{{option.id}}">
+                                        {{option.id === user.id ? 'Minhas Tarefas' : (option.name + ' '+ option.lastname)}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END -->
+                    <div ng-show="(tasksFilter.length === 0 && today()) || today()">
+                        <div ng-hide="statusList === 'true'">
+                            <li class="item" style="padding: 10px;">
+                                <i class="icon icon ion-android-stopwatch icon-clock"></i>
+                                <b style="padding-top: 7px; position: absolute;">Para Hoje</b>
+                                <div ng-repeat="item in filtered">
+                                    <div ng-if="(item.userId === user.id && usersList === '')">
+                                        {{filtered.splice(filtered.indexOf(item), 1)}}
+                                    </div>
+                                </div>
+                                <span class="badge badge-salemonitor">
+                                    {{filtered.length}}
+                                </span>
+                            </li>
+                            <div ng-repeat="item in tasksToday| filter: {status: statusList} | filter: {userId: usersList} as filtered">
+                                
+                                <li class="item" ng-hide="(item.userId === user.id && usersList === '')">
+                                    <div class="task" ng-class="item.status ? 'checked' : ''" ng-click="goDetailTask(item)">
+                                        <span>{{item.start| date: 'HH:mm'}} - {{item.stop| date: 'HH:mm'}} - {{item.description}}</span>
+                                    </div>
+                                </li>
+                            </div>
+                            <div ng-if="filtered.length === 0">
+                                <li class="item" style="color: #989AB3; padding: 15px;">
+                                    Nenhuma tarefa para hoje
+                                </li>
+                            </div>
+                            <li class="item" style="padding: 10px;">
+                                <i class="icon icon ion-alert-circled icon-alert"></i>
+                                <b style="padding-top: 7px; position: absolute;">Atrasadas</b>
+                                <span class="badge badge-salemonitor">
+                                    <div ng-repeat="item in filteredOld">
+                                        <div ng-if="(item.userId === user.id && usersList === '')">
+                                            {{filteredOld.splice(filteredOld.indexOf(item), 1)}}
+                                        </div>
+                                    </div>
+                                    {{filteredOld.length}}
+                                </span>
+                            </li>
+                            <div ng-repeat="item in tasksOld| filter: {status: statusList} | filter:  {userId: usersList} as filteredOld">
+                                <li class="item" ng-hide="(item.userId === user.id && usersList === '')">
+                                    <div class="task" ng-class="item.status ? 'checked' : ''" ng-click="goDetailTask(item)">
+                                        <span>{{item.start| date: 'HH:mm'}} - {{item.stop| date: 'HH:mm'}} - {{item.description}} ({{item.expires| date: 'dd/MM' }})</span>
+                                    </div>
+                                </li>
+                            </div>
+                            <div ng-if="filteredOld.length === 0">
+                                <li class="item" style="color: #989AB3; padding: 15px;">
+                                    Nenhuma tarefa atrasada
+                                </li>
+                            </div>
+                        </div>
+
+                        <!-- Executadas -->
+                        <div ng-show="statusList === 'true'">
+                            <!-- Concluídas no Prazo -->
+                            <li class="item" style="padding: 10px;">
+                                <img alt="" src="img/icone-atividade-resolvida-no-prazo.svg" class="icon-top" style="width: 30px; margin-right: 10px;">
+                                <b style="padding-top: 7px; position: absolute;">Concluídas no prazo</b>
+                                <div ng-repeat="item in filteredTodayDone">
+                                    <div ng-if="(item.userId === user.id && usersList === '')">
+                                        {{filteredTodayDone.length = filteredTodayDone.length - 1}}
+                                    </div>
+                                </div>
+                                <span class="badge badge-salemonitor">
+                                    {{filteredTodayDone.length}}
+                                </span>
+                            </li>
+                            <div ng-repeat="item in tasksTodayDone| filter: {status: statusList} | filter: {userId: usersList} as filteredTodayDone ">
+                                <li class="item" ng-hide="(item.userId === user.id && usersList === '')">
+                                    <div class="task" ng-click="goDetailTask(item)">
+                                        <span>{{item.start| date: 'HH:mm'}} - {{item.stop| date: 'HH:mm'}} - {{item.description}}</span>
+                                    </div>
+                                </li>
+                            </div>
+                            <div ng-if="filteredTodayDone.length === 0">
+                                <li class="item" style="color: #989AB3; padding: 15px;">
+                                    Nenhuma tarefa concluída no prazo
+                                </li>
+                            </div>
+
+                            <!-- Concluídas com atraso -->
+                            <li class="item" style="padding: 10px;">
+                                <img alt="" src="img/icone-atividade-resolvida-atrasada.svg" class="icon-top" style="width: 30px; margin-right: 10px;">
+                                <b style="padding-top: 7px; position: absolute;">Concluídas com atraso</b>
+                                <div ng-repeat="item in filteredOldCompletedToday">
+                                    <div ng-if="(item.userId === user.id && usersList === '')">
+                                        {{filteredOldCompletedToday.length = filteredOldCompletedToday.length - 1}}
+                                    </div>
+                                </div>
+                                <span class="badge badge-salemonitor">
+                                    {{filteredOldCompletedToday.length}}
+                                </span>
+                            </li>
+                            <div ng-repeat="item in taskOldCompletedToday| filter: {status: statusList} | filter: {userId: usersList} as filteredOldCompletedToday ">
+                                <li class="item" ng-hide="(item.userId === user.id && usersList === '')">
+                                    <div class="task" ng-click="goDetailTask(item)">
+                                        <span>{{item.start| date: 'HH:mm'}} - {{item.stop| date: 'HH:mm'}} - {{item.description}} ({{item.expires| date: 'dd/MM' }})</span>
+                                    </div>
+                                </li>
+                            </div>
+                            <div ng-if="filteredOldCompletedToday.length === 0">
+                                <li class="item" style="color: #989AB3; padding: 15px;">
+                                    Nenhuma tarefa concluída com atraso
+                                </li>
+                            </div>
+                        </div>
+                        <!-- FIM Executadas -->
+                    </div>
+
+                    <div ng-show="!today()">
+                        <div ng-hide="statusList === 'true'">
+                            <li class="item" style="padding: 10px;">
+                                <i class="icon icon ion-android-stopwatch icon-clock"></i>
+                                <b style="padding-top: 7px; position: absolute;">Para essa data</b>
+                                <span class="badge badge-salemonitor">
+                                    <div ng-repeat="item in filteredFilter">
+                                        <div ng-if="(item.userId === user.id && usersList === '')">
+                                            {{filteredFilter.length = filteredFilter.length - 1}}
+                                        </div>
+                                    </div>
+                                    {{filteredFilter.length}}
+                                </span>
+                            </li>
+                            <div ng-repeat="item in tasksFilter| filter: {status: statusList} | filter:  {userId: usersList} as filteredFilter">
+                                <li class="item" ng-hide="(item.userId === user.id && usersList === '')">
+                                    <div class="task" ng-class="item.status ? 'checked' : ''" ng-click="goDetailTask(item)">
+                                        <span>{{item.start| date: 'HH:mm'}} - {{item.stop| date: 'HH:mm'}} - {{item.description}}</span>
+                                    </div>
+                                </li>
+                            </div>
+                            <div ng-if="filteredFilter.length === 0">
+                                <li class="item" style="color: #989AB3; padding: 15px;">
+                                    Nenhuma tarefa para essa data
+                                </li>
+                            </div>
+                        </div>
+
+                        <div ng-show="statusList === 'true'">
+
+                            <div ng-hide="isTaskTomorrowFilter()">
+                                <!-- Concluídas no Prazo -->
+                                <li class="item" style="padding: 10px;">
+                                    <img alt="" src="img/icone-atividade-resolvida-no-prazo.svg" class="icon-top" style="width: 30px; margin-right: 10px;">
+                                    <b style="padding-top: 7px; position: absolute;">Concluídas no prazo</b>
+                                    <div ng-repeat="item in tasksFilterCompletedWithinFilter">
+                                        <div ng-if="(item.userId === user.id && usersList === '')">
+                                            {{tasksFilterCompletedWithinFilter.length = tasksFilterCompletedWithinFilter.length - 1}}
+                                        </div>
+                                    </div>
+                                    <span class="badge badge-salemonitor">
+                                        {{tasksFilterCompletedWithinFilter.length}}
+                                    </span>
+                                </li>
+                                <div ng-repeat="item in tasksFilterCompletedWithin| filter: {status: statusList} | filter: {userId: usersList} as tasksFilterCompletedWithinFilter ">
+                                    <li class="item" ng-hide="(item.userId === user.id && usersList === '')">
+                                        <div class="task" ng-click="goDetailTask(item)">
+                                            <span>{{item.start| date: 'HH:mm'}} - {{item.stop| date: 'HH:mm'}} - {{item.description}}</span>
+                                        </div>
+                                    </li>
+                                </div>
+                                <div ng-if="tasksFilterCompletedWithin.length === 0">
+                                    <li class="item" style="color: #989AB3; padding: 15px;">
+                                        Nenhuma tarefa concluída no prazo
+                                    </li>
+                                </div>
+
+                                <!-- Concluídas com atraso -->
+                                <li class="item" style="padding: 10px;">
+                                    <img alt="" src="img/icone-atividade-resolvida-atrasada.svg" class="icon-top" style="width: 30px; margin-right: 10px;">
+                                    <b style="padding-top: 7px; position: absolute;">Concluídas com atraso</b>
+                                    <div ng-repeat="item in tasksFilterDoneDelayedFilter">
+                                        <div ng-if="(item.userId === user.id && usersList === '')">
+                                            {{tasksFilterDoneDelayedFilter.length = tasksFilterDoneDelayedFilter.length - 1}}
+                                        </div>
+                                    </div>
+                                    <span class="badge badge-salemonitor">
+                                        {{tasksFilterDoneDelayedFilter.length}}
+                                    </span>
+                                </li>
+                                <div ng-repeat="item in tasksFilterDoneDelayed| filter: {status: statusList} | filter: {userId: usersList} as tasksFilterDoneDelayedFilter ">
+                                    <li class="item" ng-hide="(item.userId === user.id && usersList === '')">
+                                        <div class="task" ng-click="goDetailTask(item)">
+                                            <span>{{item.start| date: 'HH:mm'}} - {{item.stop| date: 'HH:mm'}} - {{item.description}} ({{item.expires| date: 'dd/MM' }})</span>
+                                        </div>
+                                    </li>
+                                </div>
+                                <div ng-if="tasksFilterDoneDelayedFilter.length === 0">
+                                    <li class="item" style="color: #989AB3; padding: 15px;">
+                                        Nenhuma tarefa concluída com atraso
+                                    </li>
+                                </div>
+                            </div>
+                            <!-- Concluídas no Prazo / FUTURO-->
+                            <div ng-show="isTaskTomorrowFilter()">
+                                <li class="item" style="padding: 10px;">
+                                    <img alt="" src="img/icone-atividade-resolvida-no-prazo.svg" class="icon-top" style="width: 30px; margin-right: 10px;">
+                                    <b style="padding-top: 7px; position: absolute;">Concluídas </b>
+                                    <div ng-repeat="item in tasksFilterFutureFiltered">
+                                        <div ng-if="(item.userId === user.id && usersList === '')">
+                                            {{tasksFilterFutureFiltered.length = tasksFilterFutureFiltered.length - 1}}
+                                        </div>
+                                    </div>
+                                    <span class="badge badge-salemonitor">
+                                        {{tasksFilterFutureFiltered.length}}
+                                    </span>
+                                </li>
+                                <div ng-repeat="item in tasksFilterFuture| filter: {status: statusList} | filter: {userId: usersList} as tasksFilterFutureFiltered ">
+                                    <li class="item" ng-hide="(item.userId === user.id && usersList === '')">
+                                        <div class="task" ng-click="goDetailTask(item)">
+                                            <span>{{item.start| date: 'HH:mm'}} - {{item.stop| date: 'HH:mm'}} - {{item.description}}</span>
+                                        </div>
+                                    </li>
+                                </div>
+                                <div ng-if="tasksFilterFutureFiltered.length === 0">
+                                    <li class="item" style="color: #989AB3; padding: 15px;">
+                                        Nenhuma tarefa concluída
+                                    </li>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- END Concluídas com atraso -->
+                    </div>
+
+
+
+                </ul></ion-content></ion-view></ion-nav-view></body></html>

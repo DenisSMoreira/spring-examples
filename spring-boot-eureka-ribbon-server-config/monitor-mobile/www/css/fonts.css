@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+}
+body{
+    font-family: 'Open Sans';
+    font-size: 16px !important;
+}
+
+input, button, select, textarea {
+    font-family: 'Open Sans' !important;
+    font-size: 16px !important;
+}
+
+input::-webkit-input-placeholder {
+    color: #A8ADCE;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+    color: #A8ADCE;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+    color: #A8ADCE;
+}
+
+input:-ms-input-placeholder {
+    color: #A8ADCE;
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+    color: #fff !important;
+}
+
+.picture {
+    font-size: 14px !important;
+    height: 35px;
+}
+.profile {
+    float: right;
+    width: 63%;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+.profile h3, .profile h4{
+    color: lightgrey;
+    margin: 0px;
+}

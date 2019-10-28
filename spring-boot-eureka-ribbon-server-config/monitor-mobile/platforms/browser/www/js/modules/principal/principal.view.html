@@ -1,0 +1,134 @@
+<ion-nav-bar class="header" align-title="center">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon" style="color: white;"></button>
+    </ion-nav-buttons>
+    <ion-nav-title class="text-center">
+        Inicio
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button menu-toggle="right" class="button button-icon icon ion-gear-b" style="color: white;"></button>
+    </ion-nav-buttons>
+</ion-nav-bar>
+<ion-nav-view>
+    <ion-view class="background-salemonitor" style="margin-top: 0px !important;">
+        <ion-content >
+            <div style="margin-top: 42px;">
+                <div ng-show="(user.profile === 2 || user.profile === 3)">
+                    <div ng-show="!open" style="padding-top: 10px; background-color: #30313F; color: #989AB3; padding-left: 10px; padding-bottom: 15px;">
+                        <label style="font-size: 12px;" ng-if="vendedorSelected === 'all'">
+                            Tarefa de todos os vendedores
+                        </label>
+                        <label style="font-size: 12px;" ng-if="vendedorSelected !== 'all'">
+                            Tarefas de {{vendedor.name}} {{vendedor.lastname}}
+                        </label>
+                        <span class="ion-drag icon-filter-position" style="margin-top: -10px;" ng-click="open = !open" ></span>
+                    </div>
+                    <div style="background-color: #30313F;">
+                        <div class="check-element sample-show-hide" ng-show="open" style="color: #989AB3;margin-left: 15px;padding-bottom: 10px;margin-right: 10px;" >
+                            <div class="pd-bottom10" style="font-size: 12px;padding-top: 10px; ">
+                                Configurar Filtro:
+                                <span class="ion-close icon-filter-position " style="right: 20px;" ng-click="open = !open" ></span>
+                            </div>
+                            <select class="select" ng-model="vendedorSelected" ng-change="filterTask(vendedorSelected)" style="font-size: 13px !important;height:100%;">
+                                <option value="all" >Todos os vendedores</option>
+                                <option ng-repeat="value in users" value="{{value}}">
+                                    {{value.id === user.id ? 'Minhas Tarefas' : (value.name + ' '+ value.lastname)}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-50">
+                    <a ng-click="redirector('false', vendedorSelected)" class="dashboard-card today">
+                        <img src="img/icone-atividade-no-prazo-branco.svg" alt="" class="icon-top" />
+                        <div class="number-indicator">
+                            <div ng-repeat="item in tasksToday">
+                                <div ng-if="(item.user_id === user.id && vendedorSelected === 'all' && users.length >= 1)" >
+                                    {{tasksToday.length = tasksToday.length - 1}}
+                                </div>
+                            </div>
+                            {{tasksToday.length ? tasksToday.length : 0}}
+                        </div>
+                        <div class="label">
+                            TAREFAS PARA HOJE
+                        </div>
+                    </a>
+                </div>
+                <div class="col col-50">
+                    <a ng-click="redirector('false', vendedorSelected)" class="dashboard-card overdue">
+                        <img src="img/icone-atividade-atrasada-branco.svg" class="icon-top" alt="" />
+                        <div class="number-indicator">
+                            <div ng-repeat="item in tasksOld">
+                                <div ng-if="(item.user_id === user.id && vendedorSelected === 'all' && users.length >= 1)" >
+                                    {{tasksOld.length = tasksOld.length - 1}}
+                                </div>
+                            </div>
+                            {{tasksOld.length ? tasksOld.length : 0}}
+                        </div>
+                        <div class="label">
+                            TAREFAS ATRASADAS
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row" ng-show="(user.profile === 2 || user.profile === 3)">
+                <div class="col col-50">
+                    <a ng-click="redirector('true', vendedorSelected)"  class="dashboard-card today">
+                        <img src="img/icone-atividade-resolvida-no-prazo-branco.svg" class="icon-top" alt="" style="width: 25px;" />
+                        <div class="number-indicator">
+                            <div ng-repeat="item in tasksTodayDone">
+                                <div ng-if="(item.user_id === user.id && vendedorSelected === 'all' && users.length >= 1)" >
+                                    {{tasksTodayDone.length = tasksTodayDone.length - 1}}
+                                </div>
+                            </div>
+                            {{tasksTodayDone.length ? tasksTodayDone.length : 0}}
+
+                        </div>
+                        <div class="label">
+                            CONCLUÍDAS HOJE NO PRAZO
+                        </div>
+                    </a>
+                </div>
+                <div class="col col-50">
+                    <a  ng-click="redirector('true', vendedorSelected)" class="dashboard-card overdue">
+                        <img src="img/icone-atividade-resolvida-atrasada-branco.svg" class="icon-top" alt="" style="width: 25px;"/>
+                        <div class="number-indicator">
+                            <div ng-repeat="item in taskOldCompletedToday">
+                                <div ng-if="(item.user_id === user.id && vendedorSelected === 'all' && users.length >= 1)" >
+                                    {{taskOldCompletedToday.length = taskOldCompletedToday.length - 1}}
+                                </div>
+                            </div>
+                            {{taskOldCompletedToday.length ? taskOldCompletedToday.length : 0}}
+                        </div>
+                        <div class="label">
+                            CONCLUÍDAS HOJE COM ATRASO
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-50" >
+                    <a ng-click="redirector('false', vendedorSelected, 'true')"  class="dashboard-card todo">
+                        <img src="img/icone-atividade-no-prazo-branco.svg" class="icon-top" alt="" />
+                        <div class="number-indicator">
+                            <div ng-repeat="item in tasksTomorrow">
+                                <div ng-if="(item.user_id === user.id && vendedorSelected === 'all' && users.length >= 1)" >
+                                    {{tasksTomorrow.length = tasksTomorrow.length - 1}}
+                                </div>
+                            </div>
+                            {{tasksTomorrow.length ? tasksTomorrow.length : 0}}
+                        </div>
+                        <div class="label">
+                            TAREFAS PARA AMANHÃ
+                        </div>
+                    </a>
+                </div>
+                <div class="col col-50">
+
+                </div>
+            </div>
+        </ion-content>
+    </ion-view>
+</ion-nav-view>

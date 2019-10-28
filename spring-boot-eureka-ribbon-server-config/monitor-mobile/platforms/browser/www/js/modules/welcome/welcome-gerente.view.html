@@ -1,0 +1,32 @@
+<ion-content ng-controller="PrincipalController" class="background-salemonitor" style="margin-top: 0px !important;">
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" style="height: 100%;">
+        <ion-slide >
+            <div class="imagem mb-30" >
+                <img src="img/bg-onboarding.png" style="width: 100%"/>
+                <div class="imagem-mascara" style="width: 90%">
+                    <div class="text-center" style="margin-top: 210px;">
+                        <div style="color: #fff; font-size: 20px;"><b>Bem-vindo</b></div>
+                        <div class="text-welcome">
+                            Seja bem-vindo ao Monitor, o seu maior aliado na gestão de tarefas
+                            da sua equipe de vendas. Com ele é possível monitorar o dia a dia do seu
+                            time e extrair os melhores resultados para a sua organização.
+                        </div>
+                        <div class="list list-inset background-salemonitor">
+                            <a class="button button-full button-entrar-salemonitor"
+                               ng-click="nextSlide()">PRÓXIMO</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div ng-include src="'js/modules/welcome/step1-gerente.view.html'"></div>
+        </ion-slide>
+        <ion-slide>
+            <div ng-include src="'js/modules/welcome/step2-gerente.view.html'"></div>
+        </ion-slide>
+        <ion-slide>
+            <div ng-include src="'js/modules/welcome/step3-gerente.view.html'"></div>
+        </ion-slide>
+    </ion-slide-box>
+</ion-content>

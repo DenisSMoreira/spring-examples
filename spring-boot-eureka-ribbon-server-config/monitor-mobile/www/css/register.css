@@ -1,0 +1,13 @@
+.error {
+    background-color: #5E4057;
+}
+
+.success {
+    background-color: #667254;
+}
+
+.font_msg {
+    color: #fff;
+    line-height: 40px;
+    font-size: 14px;
+}

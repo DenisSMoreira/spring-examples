@@ -1,0 +1,78 @@
+{
+    "elements": {
+        "ion-nav-title": {
+            "attributes": {
+                "class": {}
+            }
+        },
+        "timer": {
+            "attributes": {
+                "start-time": {},
+                "interval": {},
+                "autostart": {}
+            }
+        },
+        "ion-nav-view": {},
+        "ion-refresher": {
+            "attributes": {
+                "pulling-text": {},
+                "on-refresh": {}
+            }
+        },
+        "ion-floating-button": {
+            "attributes": {
+                "icon-open": {},
+                "is-disabled": {},
+                "icon": {},
+                "iconColor": {},
+                "button-color": {},
+                "is-active": {},
+                "has-footer": {},
+                "click": {}
+            }
+        },
+        "ion-nav-buttons": {
+            "attributes": {
+                "side": {},
+                "style": {}
+            }
+        },
+        "onezone-datepicker": {
+            "attributes": {
+                "datepicker-object": {}
+            }
+        },
+        "ion-content": {
+            "attributes": {
+                "overflow-scroll": {},
+                "ng-class": {},
+                "scroll": {},
+                "ng-controller": {},
+                "style": {},
+                "class": {}
+            }
+        },
+        "ion-nav-bar": {
+            "attributes": {
+                "align-title": {},
+                "class": {}
+            }
+        },
+        "ion-view": {
+            "attributes": {
+                "ng-class": {},
+                "ng-init": {},
+                "style": {},
+                "class": {}
+            }
+        }
+    },
+    "attributes": {
+        "menu-toggle": {
+            "context": "button"
+        },
+        "step": {
+            "context": "div"
+        }
+    }
+}

@@ -1,0 +1,76 @@
+<ion-view class="background-salemonitor" style="margin-top: 0px !important;">
+    <ion-content ng-controller="RegisterController">
+        <div>
+            <div class="list list-inset background-salemonitor">
+                <div style="float: left; width: 100%;" class="font-color-salemonitor">
+                    <p>Cadastre-se:</p>
+                </div>
+                <div class="pd-top15 text-center">
+                    <div class="row" style="height: 85px;">
+                        <div class="col col-30 padding-0 vertical-align">
+                            <button class="button-foto-salemonitor picture" ng-click="choosePhoto()">
+                                Enviar uma foto
+                            </button>
+                        </div>
+                        <div class="col col-30 padding-0 vertical-align">
+                            <img ng-if="data.picture != ''" ng-src="{{data.picture}}" class="circular">
+                            <img ng-if="data.picture == ''" src="img/icone-usuario.svg" class="circular">
+                        </div>
+                        <div class="col col-30 padding-0 vertical-align">
+                            <button class="button-foto-salemonitor picture" ng-click="takePhoto()">
+                                Tirar uma foto
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="pd-top15">
+                    <label class="item-input background-label h-55">
+                        <input type="text" placeholder="Nome" ng-model="data.name" required="required">
+                        <i class="icon icon ion-android-person icon-menu color-salemonitor"></i>
+                    </label>
+                </div>
+                <div class="pd-top15">
+                    <label class="item-input background-label h-55">
+                        <input type="text" placeholder="Sobrenome" ng-model="data.lastname" required="required">
+                        <i class="icon icon ion-android-person icon-menu color-salemonitor"></i>
+                    </label>
+                </div>
+                <div class="pd-top15">
+                    <label class="item-input background-label h-55">
+                        <input type="text" placeholder="E-mail" autocorrect="off" autocapitalize="none" ng-model="data.email" required="required">
+                        <i class="icon icon ion-android-mail icon-menu color-salemonitor"></i>
+                    </label>
+                </div>
+                <div class="pd-top15">
+                    <label class="item-input background-label h-55">
+                        <input type="password" placeholder="Senha" ng-model="data.password" required="required">
+                        <i class="icon icon ion-android-lock icon-menu color-salemonitor"></i>
+                    </label>
+                </div>
+                <div class="pd-top15">
+                    <label class="item-input background-label h-55">
+                        <input type="password" placeholder="Confirmar senha" ng-model="data.passwordConfirmation" required="required">
+                        <i class="icon icon ion-android-lock icon-menu color-salemonitor"></i>
+                    </label>
+                </div>
+                <div style="float: left; width: 100%;" class="pd-top15 font-color-salemonitor">
+                    <p>Perfil:</p>
+                </div>
+                <div class="pd-top15">
+                    <select class="select h-55" ng-model="data.profile">
+                        <option selected value='1'>Vendedor</option>
+                        <option value='2'>Gerente</option>
+                        <option value='3'>Administrador</option>
+                    </select>
+                </div>
+                <div class="pd-top15">
+                    <button class="button button-full button-entrar-salemonitor h-60"
+                            id="register" ng-click="register()">Cadastrar</button>
+                </div>
+                <div class="font-color-salemonitor text-center">
+                    Já é cadastrado? <a href="#/login">Entre no Monitor</a>.
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

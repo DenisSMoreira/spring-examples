@@ -1,0 +1,53 @@
+.dashboard-card {
+    background-color: #666;
+    color: white;
+    text-align: center;
+}
+.dashboard-card img.icon-top {
+    margin: 10px 0;
+    width: 20px;
+}
+.dashboard-card .number-indicator {
+    margin: 20px 0 10px;
+    font-size: 250%;
+}
+
+.dashboard-card .label {
+    padding: 5px;
+    margin-top: 30px;
+    font-size: 75%;
+    font-weight: bold;
+}
+
+a.dashboard-card {
+    display: block;
+    text-decoration: none;
+}
+
+.dashboard-card.today{
+    background-color: #B1BC39;
+}
+.dashboard-card.today .label {
+    background-color: #A1A13F;
+}
+
+.dashboard-card.overdue{
+    background-color: #F89D50;
+}
+.dashboard-card.overdue .label {
+    background-color: #D5813B;
+}
+
+.dashboard-card.alerts{
+    background-color: #4889C8;
+}
+.dashboard-card.alerts .label {
+    background-color: #2878B4;
+}
+.dashboard-card.todo {
+    background-color: #7F60A9;
+}
+.dashboard-card.todo .label {
+    background-color: #684E92;
+}
+

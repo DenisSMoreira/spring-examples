@@ -1,0 +1,34 @@
+<ion-view class="background-salemonitor" style="margin-top: 0px !important;">
+    <ion-content>
+        <div class="imagem">
+            <img src="img/salemonitor-bg.png" style="width: 100%; border-bottom: 4px solid #B1BC39;box-shadow: 1px 1px 2px #252634" alt=""/>
+            <!--<div class="imagem-mascara-login" ></div>-->
+        </div>
+        <div class="list list-inset background-salemonitor" style="margin-top: 10px">
+            <form>
+                <div>
+                    <label class="item-input background-label">
+                        <input type="text" placeholder="E-mail" ng-model="data.email">
+                        <i class="icon icon ion-android-person icon-menu color-salemonitor"></i>
+                    </label>
+                </div>
+                <div class="pd-top15">
+                    <label class="item-input background-label">
+                        <input type="password" placeholder="Senha" ng-model="data.password">
+                        <i class="icon icon ion-android-lock icon-menu color-salemonitor"></i>
+                    </label>
+                </div>
+                <div style="font-size: small; width: 100%" class="pd-top5 font-color-salemonitor">
+                    <a href="" style="float: right;color: #A8ADCE !important">Esqueceu sua senha ?</a>
+                </div>
+                <div style="padding-top: 30px;">
+                    <button class="button button-full button-entrar-salemonitor"
+                            id="login" ng-click="login()">Entrar</button>
+                </div>
+                <div class="font-color-salemonitor text-center" style="font-size: small; justify-content: center; align-items: flex-end;">
+                    Ainda não é cadastrado? <a href="" ng-click="register()"> &nbsp;Cadastre-se</a>.
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>
