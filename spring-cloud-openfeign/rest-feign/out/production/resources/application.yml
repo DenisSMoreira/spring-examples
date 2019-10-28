@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+#Spring boot config
+spring:
+  cloud:
+    config:
+      failFast: true
+      discovery:
+        enabled: true
+  boot:
+    admin:
+      url: http://localhost:8080/
+      api-path: v2/api-docs
+      context-path: /admin
+      hazelcast:
+        enabled: false
+      auto-registration: true
+      auto-deregistration: true
+      routes:
+        endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,heapdump,hystrix.stream,auditevents,loggers,autoconfig,configprops,mappings,shutdown
+
+management:
+    security:
+        enabled: false
