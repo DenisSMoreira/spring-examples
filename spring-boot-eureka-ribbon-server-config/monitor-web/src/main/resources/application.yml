@@ -1,0 +1,58 @@
+#Aplication config
+info:
+  version: @pom.version@
+  stage: dev
+server:
+    port: 8081
+monitor:
+    config:
+        rabbitmq:
+            queue: monitor.async.process.queue
+            hostname: localhost
+            username: admin
+            password: admin
+            exchange: monitor.exchange
+            routingkey: monitor.key.default
+        redis:
+            hostname: 127.0.0.1
+            port: 6379
+  
+#Spring boot config            
+spring:
+  application:
+    name: @pom.artifactId@
+  boot:
+    admin:
+      url: http://localhost:8081/
+      client:
+        enabled: true
+      api-path: api/applications
+      context-path: /admin
+      hazelcast: 
+        enabled: false
+      auto-registration: true
+      auto-deregistration: true      
+      routes:
+        endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,heapdump,hystrix.stream,auditevents,loggers,autoconfig,configprops,mappings,shutdown
+
+
+ #,turbine.stream
+  cloud:
+      config:
+        enabled: false
+  profiles:
+    active: usage_message
+
+management: 
+    security: 
+        enabled: false
+        
+camel:
+    springboot:
+        name: MonitorSampleCamel
+
+timer: 
+    period: 2000
+    
+
+        

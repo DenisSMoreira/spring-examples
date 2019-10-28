@@ -1,0 +1,77 @@
+server:
+  port: 9092
+
+eureka:
+  instance:
+    hostname: localhost
+    port: 9091
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:9091/eureka/
+  server:
+    wait-time-in-ms-when-sync-empty: 3000
+  
+monitor:
+    config:
+        rabbitmq:
+            queue: monitor.async.process.queue
+            queue.dlq: monitor.async.process.DLQ
+            hostname: 127.0.0.1
+            port: 5672
+            username: admin
+            password: admin
+            exchange: monitor.exchange
+            routingkey: monitor.mail.key.default
+        redis:
+            hostname: 127.0.0.1
+            port: 6379
+  
+#Spring boot config            
+spring:
+    rabbitmq:
+        listener:
+          retry:
+            enabled: false
+            initial-interval: 2000
+            max-attempts: 2
+            multiplier: 1.5
+            max-interval: 5000 
+          default-requeue-rejected: false
+          requeue-rejected: false
+          republishToDlq: true
+        bindings:
+          from-signup:
+              consumer:
+                requeueRejected: false
+                autoBindDlq: true
+                republishToDlq : true
+    mail:
+        host: smtp.gmail.com
+        username: denis.soares.moreira@gmail.com    
+        password: ########
+        properties:
+            mail:
+                smtp: 
+                    auth: true
+    boot:
+        admin:
+            url: http://localhost:9092/
+            client:
+              enabled: true
+            api-path: api/applications
+            context-path: /admin
+            hazelcast: 
+              enabled: false
+            auto-registration: true
+            auto-deregistration: true      
+            routes:
+              endpoints: env,metrics,trace,dump,info,trace,logfile,refresh,heapdump,auditevents,loggers,mappings,shutdown
+    cloud:
+       config:
+          enabled: true
+mail:
+    from: denis.soares.moreira@gmail.com
+    
+

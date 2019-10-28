@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="FILE_LOG_PATTERN" value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){yellow} %5p ${PID:- } [%t] -- %-40.40logger{39} : %m%n%wex"/>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <!-- Methode 2 -->
+    <appender name="JSON" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <includeCallerInfo>true</includeCallerInfo>
+            <customFields>{"appname":"Monitor WebService","version":"0.0.1-SNAPSHOT"}</customFields>
+        </encoder>
+        <!--tail -f /tmp/spring.log.json-->
+        <file>${LOG_FILE}.json</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE}.json.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>1</maxHistory>
+        </rollingPolicy>
+    </appender>
+  
+    <!-- Methode 3 -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <!-- Methode 1-->
+        <appender-ref ref="FILE" />
+        <!-- Methode 2 -->
+        <appender-ref ref="JSON" />
+    </root>
+    <logger name="org.springframework" level="INFO"/>
+    <jmxConfigurator/>
+</configuration>

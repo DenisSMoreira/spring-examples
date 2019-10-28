@@ -1,0 +1,56 @@
+#Aplication config
+info:
+  version: @pom.version@
+  stage: dev
+server:
+    port: 8082
+    
+#Config container  
+monitor.tasks:
+    config:
+        rabbitmq:
+            routingkey: monitor.tasks.key.default
+            dlq: monitor.tasks.async.DLQ
+            queue: monitor.tasks.async.queue
+            exchange: monitor.tasks.async.exchange
+            hostname: 127.0.0.1
+            port: 5672
+            username: admin
+            password: admin
+        redis:
+            hostname: 127.0.0.1
+            port: 6379
+      
+#Spring boot config            
+spring:
+    application:
+        name: @pom.artifactId@
+    rabbitmq:
+        listener:
+            default-requeue-rejected: false
+            retry:
+                enabled: true
+                initial-interval: 2000
+                max-attempts: 2
+                multiplier: 1.5
+                max-interval: 5000 
+    mail:
+        host: smtp.gmail.com
+        username: denis.soares.moreira@gmail.com    
+        password: zvc6ve64
+        properties.mail.smtp.auth: true
+    boot.admin:
+            url: http://localhost:8081/
+            client.enabled: true
+            api-path: api/applications
+            context-path: /admin
+            hazelcast.enabled: false
+            auto-registration: true
+            auto-deregistration: true      
+            routes:
+              endpoints: env,metrics,trace,dump,info,trace,logfile,refresh,heapdump,auditevents,loggers,mappings,shutdown
+    cloud.config.enabled: false
+
+    
+
+        
